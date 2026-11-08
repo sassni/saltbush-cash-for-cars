@@ -2,13 +2,17 @@
 const {name = 'Saltbush Cash for Cars'} = Astro.props
 const parts = name.split(' ')
 const first = parts.shift()
+const gid = 'lg-' + Math.random().toString(36).slice(2, 7) // unique per instance (header + footer)
+const g = `url(#${gid})`
 ---
 <a href="/" class="logo">
   <svg viewBox="0 0 48 48" aria-hidden="true">
-    <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b6f23a"/><stop offset="1" stop-color="#2ee6c5"/></linearGradient></defs>
-    <rect width="48" height="48" rx="14" fill="url(#lg)"/>
-    <path d="M24 37V21" stroke="#07110a" stroke-width="3" stroke-linecap="round"/>
-    <path d="M24 25c-6 0-10-4-10-10 6 0 10 4 10 10zM24 21c5 0 8-3.5 8-8.5-5 0-8 3.5-8 8.5zM24 31c-4.5 0-7.5-3-7.5-7 4.5 0 7.5 3 7.5 7zM24 29c4.5 0 7.5-3 7.5-7-4.5 0-7.5 3-7.5 7z" fill="#07110a"/>
+    <defs><linearGradient id={gid} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b6f23a"/><stop offset="1" stop-color="#2ee6c5"/></linearGradient></defs>
+    <rect width="48" height="48" rx="14" fill={g}/>
+    <path d="M6.5 29.5v-4.2c0-1.2.8-2.2 2-2.5l4-1.1 4.1-5.6c.7-1 1.9-1.6 3.1-1.6h9.2c1.1 0 2.2.5 2.9 1.4l4.4 5.6 4.7 1c1.4.3 2.6 1.5 2.6 3v4c0 1-.8 1.8-1.8 1.8h-2.5a4.6 4.6 0 0 0-9.1 0H19.6a4.6 4.6 0 0 0-9.1 0H8.3c-1 0-1.8-.8-1.8-1.8z" fill="#07110a"/>
+    <path d="M19.6 17.4h4.6v4.9h-8.1l2.6-3.7c.2-.7.5-1.2.9-1.2zM26.4 17.4h3.4c.4 0 .8.2 1 .5l3.3 4.4h-7.7z" fill={g}/>
+    <circle cx="15" cy="31.3" r="3.6" fill="#07110a"/><circle cx="33.3" cy="31.3" r="3.6" fill="#07110a"/>
+    <circle cx="15" cy="31.3" r="1.4" fill={g}/><circle cx="33.3" cy="31.3" r="1.4" fill={g}/>
   </svg>
   <span><b>{first}</b><small>{parts.join(' ')}</small></span>
 </a>

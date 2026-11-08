@@ -74,7 +74,7 @@ export const home = {
     {title: 'Unregistered cars', text: 'No rego? No problem. We tow it, so it doesn’t need to be road-legal.'},
     {title: 'Used cars that still run', text: 'Want a quick sale without selling privately? Get a fair cash price today.'},
   ],
-  buyImage: {file: 'rusty-sedan.webp', alt: 'Weathered old sedan with rust and faded paint parked on gravel'},
+  buyImage: {file: 'damaged-modern-car.webp', alt: 'Modern white hatchback with front-end crash damage, the kind of car we buy for cash'},
   servicesHeading: 'How we can help',
   servicesIntro: 'Whether you want top dollar or just want it gone, there’s a service to suit.',
   whyHeading: 'Why Adelaide sellers choose Saltbush',
@@ -177,7 +177,7 @@ const carRemoval = {
 Our Wingfield-based tow trucks collect cars from **homes, rentals, strata car parks, workshops and businesses** across Adelaide. You don’t have to be there if we’ve arranged things beforehand.
 
 Most cars we remove still have value, so we [pay cash for cars](/services/cash-for-cars) of almost any age. Cars at the end of the road go through our [scrap car removal](/services/scrap-car-removal) service.`,
-      image: {file: 'old-car-coast.webp', alt: 'Old rusted car abandoned in long grass near the coast'},
+      image: {file: 'damaged-car-on-tow-truck.webp', alt: 'Damaged red car strapped onto a flatbed tow truck for free removal'},
     },
     {
       heading: 'Removal for any situation',
@@ -240,7 +240,7 @@ const scrapCarRemoval = {
 - Project cars that never got finished
 
 Not sure if yours is scrap? Send us the details and we’ll tell you. It might be worth more as a [used car sale](/services/cash-for-cars).`,
-      image: {file: 'wrecked-ute-desert.webp', alt: 'Burnt-out wrecked ute body sitting in a dry, sandy paddock'},
+      image: {file: 'crushed-scrap-cars.webp', alt: 'Pile of crushed scrap cars ready for metal recycling'},
     },
     {
       heading: 'Recycled responsibly, not dumped',
@@ -362,5 +362,5 @@ export const notFound = {
   heroHeading: 'This page has been towed away',
   heroText: 'We couldn’t find the page you were after. It may have moved or the link might be wrong. Try one of the pages below, or call us for a quick quote.',
   buttonLabel: 'Take me home',
-  heroImage: {file: 'wrecked-ute-desert.webp', alt: 'Abandoned wrecked ute in an empty paddock'},
+  heroImage: {file: 'scrap-pile-blue-sky.webp', alt: 'Stack of wrecked cars at a scrap yard under a blue sky'},
 }
