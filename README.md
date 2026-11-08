@@ -13,7 +13,7 @@ A website for an Adelaide business that buys unwanted cars and tows them away fo
 **Astro (static site) + Sanity CMS, hosted on Vercel.**
 
 - **Easy for a non-technical client.** Sanity Studio is a hosted web app with a Google or email login and nothing to install or update.
-  - Every page appears as a single form in a plain-English sidebar, e.g. "🏠 Home page" and "⚙️ Contact details & site settings".
+  - Every page appears as a single form in a plain-English sidebar, e.g. "Home page" and "Contact details & site settings".
   - Every field has help text, and images have drag-and-drop upload, a focal-point crop and a **required alt-text field**.
 - **Safe.** The client can only edit what exists. Creating, deleting and duplicating documents is switched off, and page addresses are locked. New services or locations go through the developer, as the brief asks.
 - **One place for contact details.** Change the phone number once in *Site settings* and it updates the header, buttons, mobile call bar, footer, contact page and Google structured data.
@@ -34,7 +34,7 @@ A website for an Adelaide business that buys unwanted cars and tows them away fo
 2. Pick a page in the left sidebar. The tabs along the top split each page into sections: *Top of page*, *Page sections*, *FAQs* and *SEO*.
 3. Edit the text you want to change:
    - **Image:** click the image, then *Replace* to upload a new one, and update the *Alt text*.
-   - **Phone, email, address or hours:** open *⚙️ Contact details & site settings*.
+   - **Phone, email, address or hours:** open *Contact details & site settings*.
    - **Google title and description:** open the *SEO* tab on any page. Character limits are shown.
    - **FAQs, reviews, suburbs:** edit the item in its list, or drag to reorder.
 4. Click **Publish** (bottom right). The live site updates in about 1 minute.
