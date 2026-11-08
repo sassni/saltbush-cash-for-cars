@@ -105,11 +105,13 @@ The service-areas section adds suburb modifiers (e.g. "car removal Salisbury").
 - **Example prompt:**
   > "Write the Car Removal service page for an Adelaide cash-for-cars business called Saltbush. Australian English, plain and trustworthy, no hype. Sections: why remove an unwanted car, situations we help with, what's included, a 3-step process and 4 FAQs. Mention Service SA for rego, only promise same-day pickup 'subject to availability', and link to the cash-for-cars and scrap pages."
 - **What I changed by hand:**
-  - Removed risky claims: payment is by bank transfer, there are no fake licence numbers, and same-day pickup is "subject to availability".
-  - Localised the copy (Adelaide suburbs, Service SA, rego, ute) and cut filler.
-  - Tightened headlines for mobile and checked every title and description length.
-  - Chose and replaced photos, wrote the alt text, redesigned the theme, and checked contrast and speed.
-  - Clearly marked placeholders: phone number (from ACMA's fictional range), ABN, address and sample reviews.
+  - **Design:** I reviewed the first version and found the earthy look dated, so I chose a new dark theme with lime accents and had the whole UI rebuilt in it.
+  - **Photos:** three photos showed vintage cars that didn't fit the content. I swapped them for modern ones: a damaged car, a car on a tow truck and crushed scrap cars.
+  - **Branding:** I replaced the leaf logo with a car, then pushed for a modern front-view car instead of a basic side view. I also changed the link preview so WhatsApp and Facebook show the logo, not a random photo.
+  - **Content:** I read the copy and kept the claims honest. Payment is by bank transfer, there are no fake licence numbers, and same-day pickup is "subject to availability". I made sure it uses local terms (Adelaide suburbs, Service SA, rego) and marked the placeholders: phone number (from ACMA's fictional range), ABN, address and sample reviews.
+  - **Testing:** on the live site I tested the quote form from my phone and fixed two setup issues that would have stopped emails. A stray character had got into the form key, and the form service was locked to localhost instead of the live domain.
+  - **Speed and CMS:** I ran PageSpeed on mobile and desktop, and set up the publish-to-rebuild webhook and the reviewer login. I checked in the CMS that headings, images and the phone number update live, and made sure every small label and button is editable too.
+  - **Tidying:** I tidied the README (removed emoji, kept it to about two pages).
 - **How AI sped things up:** the content model, 9 pages of copy and the design system took hours instead of days. That left time for design, editing and testing.
 
 ## Developer notes
