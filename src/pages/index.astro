@@ -20,16 +20,16 @@ const site = (Astro.site?.toString() || '').replace(/\/$/, '')
 <Base seo={p.seo} schema={[websiteSchema(s, site), faqSchema(p.faqs)]}>
   <Hero page={p} settings={s} badge={p.heroBadge} />
   <Stats stats={p.stats} />
-  <Steps steps={p.steps} heading={p.stepsHeading} intro={p.stepsIntro} dark={false} />
+  <Steps steps={p.steps} heading={p.stepsHeading} intro={p.stepsIntro} eyebrow={s.eyebrowSteps} dark={false} />
 
   <section class="section section--alt" aria-labelledby="buy-h">
     <div class="container">
       <div class="split">
         <div>
-          <p class="eyebrow">What we buy</p>
+          <p class="eyebrow">{s.eyebrowBuy}</p>
           <h2 id="buy-h">{p.buyHeading}</h2>
           <p class="lead" style="color:var(--ink-soft);font-size:var(--fs-lg)">{p.buyIntro}</p>
-          <div class="btn-row"><a class="btn" href="#quote">{s.quoteLabel}</a><a class="text-link" style="align-self:center" href="/services/cash-for-cars">How cash for cars works</a></div>
+          <div class="btn-row"><a class="btn" href="#quote">{s.quoteLabel}</a><a class="text-link" style="align-self:center" href="/services/cash-for-cars">{s.homeBuyLink}</a></div>
         </div>
         <div class="framed"><SanityImage image={p.buyImage} aspect={4 / 3} widths={[480, 720, 960]} sizes="(min-width: 960px) 560px, calc(100vw - 32px)" /></div>
       </div>
@@ -39,22 +39,22 @@ const site = (Astro.site?.toString() || '').replace(/\/$/, '')
 
   <section class="section" aria-labelledby="services-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Services</p><h2 id="services-h">{p.servicesHeading}</h2><p>{p.servicesIntro}</p></div>
-      <ServiceCards services={services} />
-      <p style="margin-top:var(--space-5)"><a class="text-link" href="/services">Compare all our services</a></p>
+      <div class="section-head"><p class="eyebrow">{s.eyebrowServices}</p><h2 id="services-h">{p.servicesHeading}</h2><p>{p.servicesIntro}</p></div>
+      <ServiceCards services={services} settings={s} />
+      <p style="margin-top:var(--space-5)"><a class="text-link" href="/services">{s.homeServicesLink}</a></p>
     </div>
   </section>
 
   <section class="section section--dark pattern-bg on-dark" aria-labelledby="why-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Why Saltbush</p><h2 id="why-h">{p.whyHeading}</h2><p>{p.whyIntro}</p></div>
+      <div class="section-head"><p class="eyebrow">{s.eyebrowWhy}</p><h2 id="why-h">{p.whyHeading}</h2><p>{p.whyIntro}</p></div>
       <Cards items={p.whyItems} cols={4} />
-      <p style="margin-top:var(--space-6)"><a class="btn btn--outline" href="/about">More about our team</a></p>
+      <p style="margin-top:var(--space-6)"><a class="btn btn--outline" href="/about">{s.homeWhyButton}</a></p>
     </div>
   </section>
 
   <Testimonials settings={s} />
   <Areas settings={s} />
-  <Faq faqs={p.faqs} heading={p.faqHeading} />
+  <Faq faqs={p.faqs} heading={p.faqHeading} eyebrow={s.eyebrowFaq} />
   <CtaBand settings={s} />
 </Base>

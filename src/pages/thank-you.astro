@@ -8,7 +8,7 @@ const s = await getSettings()
 <Base seo={p.seo} noindex>
   <section class="section center-page pattern-bg" style="min-height:60vh">
     <div class="container" style="max-width:760px">
-      <p class="eyebrow">Request received</p>
+      <p class="eyebrow">{s.thankYouLabel}</p>
       <h1>{p.heroHeading}</h1>
       <p style="font-size:var(--fs-lg);color:var(--ink-soft)">{p.heroText}</p>
       <div class="btn-row"><a class="btn" href="/">{p.buttonLabel}</a><a class="btn btn--outline" href={telHref(s.phone)}><Icon name="phone" /> {s.callLabel} {s.phone}</a></div>

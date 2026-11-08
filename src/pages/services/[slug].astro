@@ -20,7 +20,7 @@ const {sv} = Astro.props
 const s = await getSettings()
 const others = (await getServices()).filter((o) => o._id !== sv._id)
 const site = (Astro.site?.toString() || '').replace(/\/$/, '')
-const crumbs = [{name: 'Home', href: '/'}, {name: 'Services', href: '/services'}, {name: sv.title, href: `/services/${sv.slug.current}`}]
+const crumbs = [{name: s.navHome || 'Home', href: '/'}, {name: s.navServices || 'Services', href: '/services'}, {name: sv.title, href: `/services/${sv.slug.current}`}]
 ---
 <Base seo={sv.seo} schema={[serviceSchema(sv, site), faqSchema(sv.faqs), breadcrumbSchema(crumbs, site)]}>
   <Hero page={sv} settings={s} crumbs={crumbs} />
@@ -28,18 +28,18 @@ const crumbs = [{name: 'Home', href: '/'}, {name: 'Services', href: '/services'}
   {sv.benefits?.length > 0 && (
     <section class="section section--alt" aria-labelledby="benefits-h">
       <div class="container">
-        <div class="section-head"><p class="eyebrow">Benefits</p><h2 id="benefits-h">{sv.benefitsHeading}</h2></div>
+        <div class="section-head"><p class="eyebrow">{s.eyebrowBenefits}</p><h2 id="benefits-h">{sv.benefitsHeading}</h2></div>
         <Cards items={sv.benefits} cols={4} />
       </div>
     </section>
   )}
-  <Steps steps={sv.steps} heading={sv.stepsHeading} />
+  <Steps steps={sv.steps} heading={sv.stepsHeading} eyebrow={s.eyebrowSteps} />
   <Testimonials settings={s} />
-  <Faq faqs={sv.faqs} heading={sv.faqHeading} alt />
+  <Faq faqs={sv.faqs} heading={sv.faqHeading} eyebrow={s.eyebrowFaq} alt />
   <section class="section" aria-labelledby="related-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Related services</p><h2 id="related-h">Other ways we can help</h2></div>
-      <ServiceCards services={others} />
+      <div class="section-head"><p class="eyebrow">{s.eyebrowRelated}</p><h2 id="related-h">{s.relatedHeading}</h2></div>
+      <ServiceCards services={others} settings={s} />
     </div>
   </section>
   <Areas settings={s} />

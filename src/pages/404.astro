@@ -15,10 +15,10 @@ const services = await getServices()
       <p style="font-size:var(--fs-lg);color:var(--ink-soft)">{p.heroText}</p>
       <div class="btn-row"><a class="btn" href="/">{p.buttonLabel}</a><a class="btn btn--outline" href={telHref(s.phone)}><Icon name="phone" /> {s.callLabel} {s.phone}</a></div>
       <ul class="chips" style="margin-top:2rem">
-        <li><a href="/services">Services</a></li>
+        <li><a href="/services">{s.navServices}</a></li>
         {services.map((sv) => <li><a href={`/services/${sv.slug.current}`}>{sv.title}</a></li>)}
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="/about">{s.navAbout}</a></li>
+        <li><a href="/contact">{s.navContact}</a></li>
       </ul>
       <div class="framed"><SanityImage image={p.heroImage} aspect={4 / 3} widths={[480, 720]} sizes="560px" /></div>
     </div>

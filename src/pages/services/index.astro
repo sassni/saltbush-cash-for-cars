@@ -12,23 +12,23 @@ const p = await getPage('servicesPage')
 const s = await getSettings()
 const services = await getServices()
 const site = (Astro.site?.toString() || '').replace(/\/$/, '')
-const crumbs = [{name: 'Home', href: '/'}, {name: 'Services', href: '/services'}]
+const crumbs = [{name: s.navHome || 'Home', href: '/'}, {name: s.navServices || 'Services', href: '/services'}]
 ---
 <Base seo={p.seo} schema={[faqSchema(p.faqs), breadcrumbSchema(crumbs, site)]}>
   <Hero page={p} settings={s} crumbs={crumbs} />
   <section class="section" aria-labelledby="list-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Services</p><h2 id="list-h">{p.listHeading}</h2><p>{p.listIntro}</p></div>
-      <ServiceCards services={services} />
+      <div class="section-head"><p class="eyebrow">{s.eyebrowServices}</p><h2 id="list-h">{p.listHeading}</h2><p>{p.listIntro}</p></div>
+      <ServiceCards services={services} settings={s} />
     </div>
   </section>
   <section class="section section--alt" aria-labelledby="buy-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">What we buy</p><h2 id="buy-h">{p.buyHeading}</h2></div>
+      <div class="section-head"><p class="eyebrow">{s.eyebrowBuy}</p><h2 id="buy-h">{p.buyHeading}</h2></div>
       <Cards items={p.buyItems} cols={3} />
     </div>
   </section>
-  <Faq faqs={p.faqs} heading={p.faqHeading} />
+  <Faq faqs={p.faqs} heading={p.faqHeading} eyebrow={s.eyebrowFaq} />
   <Areas settings={s} />
   <CtaBand settings={s} />
 </Base>

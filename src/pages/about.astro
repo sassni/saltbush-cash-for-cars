@@ -11,7 +11,7 @@ import {breadcrumbSchema} from '../lib/schema.js'
 const p = await getPage('aboutPage')
 const s = await getSettings()
 const site = (Astro.site?.toString() || '').replace(/\/$/, '')
-const crumbs = [{name: 'Home', href: '/'}, {name: 'About', href: '/about'}]
+const crumbs = [{name: s.navHome || 'Home', href: '/'}, {name: s.navAbout || 'About', href: '/about'}]
 ---
 <Base seo={p.seo} schema={[breadcrumbSchema(crumbs, site)]}>
   <Hero page={p} settings={s} crumbs={crumbs} />
@@ -19,9 +19,9 @@ const crumbs = [{name: 'Home', href: '/'}, {name: 'About', href: '/about'}]
   <ContentSections sections={p.sections} />
   <section class="section section--dark pattern-bg on-dark" aria-labelledby="values-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Our promise</p><h2 id="values-h">{p.valuesHeading}</h2></div>
+      <div class="section-head"><p class="eyebrow">{s.eyebrowValues}</p><h2 id="values-h">{p.valuesHeading}</h2></div>
       <Cards items={p.values} cols={4} />
-      <p style="margin-top:var(--space-6)" class="btn-row"><a class="btn" href="/services">See our services</a><a class="btn btn--outline" href="/contact">Contact us</a></p>
+      <p style="margin-top:var(--space-6)" class="btn-row"><a class="btn" href="/services">{s.aboutButtonServices}</a><a class="btn btn--outline" href="/contact">{s.aboutButtonContact}</a></p>
     </div>
   </section>
   <Testimonials settings={s} />

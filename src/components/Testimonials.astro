@@ -5,13 +5,13 @@ const items = s.testimonials || []
 {items.length > 0 && (
 <section class="section" aria-labelledby="reviews-h">
   <div class="container">
-    <div class="section-head"><p class="eyebrow">Reviews</p><h2 id="reviews-h">{s.testimonialsHeading}</h2></div>
+    <div class="section-head"><p class="eyebrow">{s.eyebrowReviews}</p><h2 id="reviews-h">{s.testimonialsHeading}</h2></div>
     <div class="grid grid-3">
       {items.map((t) => (
         <figure class="review">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
           <blockquote><p>“{t.quote}”</p></blockquote>
-          <figcaption><span class="avatar" aria-hidden="true">{t.name?.[0]}</span><div>{t.name}, {t.suburb}{t.car && <span>Sold: {t.car}</span>}</div></figcaption>
+          <figcaption><span class="avatar" aria-hidden="true">{t.name?.[0]}</span><div>{t.name}, {t.suburb}{t.car && <span>{s.reviewSoldPrefix} {t.car}</span>}</div></figcaption>
         </figure>
       ))}
     </div>

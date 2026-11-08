@@ -12,18 +12,18 @@ const {settings: s, services = []} = Astro.props
         <a class="footer-phone" href={telHref(s.phone)}>{s.phone}</a>
       </div>
       <div>
-        <h2>Services</h2>
+        <h2>{s.footerServicesHeading}</h2>
         <ul>
-          <li><a href="/services">All services</a></li>
+          <li><a href="/services">{s.footerAllServices}</a></li>
           {services.map((sv) => <li><a href={`/services/${sv.slug.current}`}>{sv.title} Adelaide</a></li>)}
         </ul>
       </div>
       <div>
-        <h2>Company</h2>
-        <ul><li><a href="/">Home</a></li><li><a href="/about">About us</a></li><li><a href="/contact">Contact &amp; quote</a></li></ul>
+        <h2>{s.footerCompanyHeading}</h2>
+        <ul><li><a href="/">{s.navHome}</a></li><li><a href="/about">{s.footerAboutLink}</a></li><li><a href="/contact">{s.footerContactLink}</a></li></ul>
       </div>
       <div>
-        <h2>Contact</h2>
+        <h2>{s.footerContactHeading}</h2>
         <address style="font-style:normal">
           <ul>
             <li><a href={telHref(s.phone)}>{s.phone}</a></li>
@@ -36,11 +36,11 @@ const {settings: s, services = []} = Astro.props
     </div>
     <div class="footer-bottom">
       <span>© {new Date().getFullYear()} {s.businessName}{s.abn && ` · ABN ${s.abn}`}</span>
-      <span>Proudly serving Adelaide, South Australia</span>
+      <span>{s.footerTagline}</span>
     </div>
   </div>
 </footer>
 <div class="callbar" aria-label="Quick contact">
-  <a class="btn btn--outline" href={telHref(s.phone)}>{s.callLabel} now</a>
+  <a class="btn btn--outline" href={telHref(s.phone)}>{s.mobileCallLabel}</a>
   <a class="btn" href="#quote">{s.headerButton}</a>
 </div>

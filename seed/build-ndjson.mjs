@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import {fileURLToPath} from 'node:url'
 import * as c from './content.mjs'
+import {labels} from './labels.mjs'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 let n = 0
@@ -43,7 +44,7 @@ const seo = (s) => ({_type: 'seo', ...s})
 
 const docs = []
 const s = c.settings
-docs.push({_id: 'siteSettings', _type: 'siteSettings', ...s, testimonials: keyed(s.testimonials, 'testimonial'), socialImage: image({file: 'social-share.png', alt: 'Saltbush Cash for Cars logo – Adelaide car buyers'})})
+docs.push({_id: 'siteSettings', _type: 'siteSettings', ...s, ...labels, testimonials: keyed(s.testimonials, 'testimonial'), socialImage: image({file: 'social-share.png', alt: 'Saltbush Cash for Cars logo – Adelaide car buyers'})})
 
 const h = c.home
 docs.push({_id: 'homePage', _type: 'homePage', ...h, seo: seo(h.seo), heroImage: image(h.heroImage), buyImage: image(h.buyImage),

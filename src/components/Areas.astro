@@ -4,11 +4,11 @@ const {settings: s, alt = true} = Astro.props
 <section class:list={['section', {'section--alt': alt}]} aria-labelledby="areas-h">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">Service areas</p>
+      <p class="eyebrow">{s.eyebrowAreas}</p>
       <h2 id="areas-h">{s.areasHeading}</h2>
       <p>{s.areasIntro}</p>
     </div>
     <ul class="chips">{(s.suburbs || []).map((sub) => <li>{sub}</li>)}</ul>
-    <p style="margin-top:1.5rem">{s.mapNote} <a class="text-link" href="/services/car-removal">Free car removal</a> · <a class="text-link" href="/contact">Contact us</a></p>
+    <p style="margin-top:1.5rem">{s.mapNote} <a class="text-link" href="/services/car-removal">{s.areasLinkRemoval}</a> · <a class="text-link" href="/contact">{s.areasLinkContact}</a></p>
   </div>
 </section>

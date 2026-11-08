@@ -7,24 +7,24 @@ const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/'
 const cur = (href) => (path === href ? 'page' : undefined)
 ---
 <div class="topbar"><div class="container">
-  <span><span class="hide-sm">Free removal across Adelaide · </span>{s.hours?.[0]}</span>
+  <span><span class="hide-sm">{s.topbarText} · </span>{s.hours?.[0]}</span>
   <a href={telHref(s.phone)}>{s.callLabel} {s.phone}</a>
 </div></div>
 <header class="site-header">
   <div class="container">
     <Logo name={s.businessName} />
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="bars" aria-hidden="true"></span>Menu</button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="bars" aria-hidden="true"></span>{s.navMenu || 'Menu'}</button>
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul>
-        <li><a href="/" aria-current={cur('/')}>Home</a></li>
+        <li><a href="/" aria-current={cur('/')}>{s.navHome}</a></li>
         <li class="has-sub">
-          <a href="/services" aria-current={cur('/services')}>Services</a>
+          <a href="/services" aria-current={cur('/services')}>{s.navServices}</a>
           <ul class="sub">
             {services.map((sv) => <li><a href={`/services/${sv.slug.current}`} aria-current={cur(`/services/${sv.slug.current}`)}>{sv.title}</a></li>)}
           </ul>
         </li>
-        <li><a href="/about" aria-current={cur('/about')}>About</a></li>
-        <li><a href="/contact" aria-current={cur('/contact')}>Contact</a></li>
+        <li><a href="/about" aria-current={cur('/about')}>{s.navAbout}</a></li>
+        <li><a href="/contact" aria-current={cur('/contact')}>{s.navContact}</a></li>
       </ul>
     </nav>
     <div class="header-cta">
