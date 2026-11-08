@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro'
+import Breadcrumbs from '../components/Breadcrumbs.astro'
+import QuoteForm from '../components/QuoteForm.astro'
+import Icon from '../components/Icon.astro'
+import Areas from '../components/Areas.astro'
+import Faq from '../components/Faq.astro'
+import {getPage, getSettings, telHref} from '../lib/sanity.js'
+import {faqSchema, breadcrumbSchema} from '../lib/schema.js'
+const p = await getPage('contactPage')
+const s = await getSettings()
+const site = (Astro.site?.toString() || '').replace(/\/$/, '')
+const crumbs = [{name: 'Home', href: '/'}, {name: 'Contact', href: '/contact'}]
+const address = `${s.street}, ${s.suburb} ${s.state} ${s.postcode}`
+---
+<Base seo={p.seo} schema={[faqSchema(p.faqs), breadcrumbSchema(crumbs, site)]}>
+  <section class="hero pattern-bg">
+    <div class="container hero-inner">
+      <div>
+        <Breadcrumbs items={crumbs} />
+        <p class="eyebrow">{p.heroEyebrow}</p>
+        <h1>{p.heroHeading}</h1>
+        <p class="hero-lead">{p.heroText}</p>
+        <div class="btn-row" style="margin-bottom:var(--space-6)">
+          <a class="btn" href={telHref(s.phone)}><Icon name="phone" /> {s.callLabel} {s.phone}</a>
+        </div>
+        <div class="card" style="background:var(--eucalypt-2);border-color:var(--sage);color:var(--sand)">
+          <h2 style="font-size:1.35rem;color:#fff">{p.detailsHeading}</h2>
+          <ul class="contact-list" style="margin-bottom:var(--space-5)">
+            <li><span class="ico"><Icon name="phone" /></span><div><b style="color:#c9d6ce">Phone</b><a href={telHref(s.phone)} style="color:#fff">{s.phone}</a></div></li>
+            {s.email && <li><span class="ico"><Icon name="mail" /></span><div><b style="color:#c9d6ce">Email</b><a href={`mailto:${s.email}`} style="color:#fff;word-break:break-all">{s.email}</a></div></li>}
+            <li><span class="ico"><Icon name="pin" /></span><div><b style="color:#c9d6ce">Yard (by appointment)</b><span>{address}</span></div></li>
+          </ul>
+          <h2 style="font-size:1.35rem;color:#fff">{p.hoursHeading}</h2>
+          <ul class="hours">{(s.hours || []).map((h) => <li style="border-color:#4a6355">{h}</li>)}</ul>
+        </div>
+      </div>
+      <QuoteForm settings={s} />
+    </div>
+  </section>
+  <Areas settings={s} alt={false} />
+  <Faq faqs={p.faqs} heading={p.faqHeading} alt />
+</Base>

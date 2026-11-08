@@ -1,0 +1,15 @@
+---
+const {steps = [], heading, intro, eyebrow = 'How it works', dark = true} = Astro.props
+---
+{steps.length > 0 && (
+<section class:list={['section', {'section--dark pattern-bg on-dark': dark}]} aria-labelledby="steps-h">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">{eyebrow}</p><h2 id="steps-h">{heading}</h2>{intro && <p>{intro}</p>}</div>
+    <ol class="grid grid-3" style="list-style:none;padding:0;margin:0">
+      {steps.map((st, i) => (
+        <li class="card"><span class="num" aria-hidden="true">{i + 1}</span><h3>{st.title}</h3><p>{st.text}</p></li>
+      ))}
+    </ol>
+  </div>
+</section>
+)}

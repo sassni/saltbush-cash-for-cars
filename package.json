@@ -1,0 +1,25 @@
+{
+  "name": "saltbush-cash-for-cars",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:seo": "node scripts/check-seo.mjs",
+    "seed": "node seed/build-ndjson.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/figtree": "^5.3.0",
+    "@portabletext/to-html": "^6.0.0",
+    "@sanity/client": "^8.15.0",
+    "@sanity/image-url": "^2.1.1",
+    "astro": "^5.18.2"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

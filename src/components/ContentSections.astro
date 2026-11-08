@@ -1,0 +1,30 @@
+---
+import {toHTML} from '@portabletext/to-html'
+import SanityImage from './SanityImage.astro'
+const {sections = []} = Astro.props
+const esc = (s = '') => s.replace(/"/g, '&quot;')
+const components = {
+  marks: {
+    link: ({children, value}) => {
+      const href = value?.href || '#'
+      const ext = /^https?:/.test(href)
+      return `<a href="${esc(href)}"${ext ? ' rel="noopener" target="_blank"' : ''}>${children}</a>`
+    },
+  },
+}
+---
+{sections.map((sec, i) => (
+  <section class:list={['section', {'section--alt': i % 2 === 1}]}>
+    <div class="container">
+      <div class:list={[sec.image?.asset ? 'split' : '', {'split--flip': i % 2 === 1}]} style={sec.image?.asset ? '' : 'max-width:780px'}>
+        <div class="prose">
+          <h2>{sec.heading}</h2>
+          <Fragment set:html={toHTML(sec.body || [], {components})} />
+        </div>
+        {sec.image?.asset && (
+          <div class="framed"><SanityImage image={sec.image} aspect={4 / 3} widths={[480, 720, 960, 1200]} sizes="(min-width: 960px) 560px, calc(100vw - 32px)" /></div>
+        )}
+      </div>
+    </div>
+  </section>
+))}

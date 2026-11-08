@@ -1,0 +1,19 @@
+---
+const {faqs = [], heading, eyebrow = 'FAQs', alt = false} = Astro.props
+const paras = (t = '') => t.split(/\n\s*\n/)
+---
+{faqs.length > 0 && (
+<section class:list={['section', {'section--alt': alt}]} aria-labelledby="faq-h">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">{eyebrow}</p><h2 id="faq-h">{heading}</h2></div>
+    <div class="faq">
+      {faqs.map((f, i) => (
+        <details open={i === 0}>
+          <summary>{f.question}</summary>
+          <div class="answer">{paras(f.answer).map((p) => <p>{p}</p>)}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+)}

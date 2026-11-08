@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro'
+import Hero from '../components/Hero.astro'
+import ContentSections from '../components/ContentSections.astro'
+import Stats from '../components/Stats.astro'
+import Cards from '../components/Cards.astro'
+import Testimonials from '../components/Testimonials.astro'
+import CtaBand from '../components/CtaBand.astro'
+import {getPage, getSettings} from '../lib/sanity.js'
+import {breadcrumbSchema} from '../lib/schema.js'
+const p = await getPage('aboutPage')
+const s = await getSettings()
+const site = (Astro.site?.toString() || '').replace(/\/$/, '')
+const crumbs = [{name: 'Home', href: '/'}, {name: 'About', href: '/about'}]
+---
+<Base seo={p.seo} schema={[breadcrumbSchema(crumbs, site)]}>
+  <Hero page={p} settings={s} crumbs={crumbs} />
+  <Stats stats={p.stats} />
+  <ContentSections sections={p.sections} />
+  <section class="section section--dark pattern-bg on-dark" aria-labelledby="values-h">
+    <div class="container">
+      <div class="section-head"><p class="eyebrow">Our promise</p><h2 id="values-h">{p.valuesHeading}</h2></div>
+      <Cards items={p.values} cols={4} />
+      <p style="margin-top:var(--space-6)" class="btn-row"><a class="btn" href="/services">See our services</a><a class="btn btn--outline" href="/contact">Contact us</a></p>
+    </div>
+  </section>
+  <Testimonials settings={s} />
+  <CtaBand settings={s} />
+</Base>

@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro'
+import Icon from '../components/Icon.astro'
+import {getPage, getSettings, telHref} from '../lib/sanity.js'
+const p = await getPage('thankYouPage')
+const s = await getSettings()
+---
+<Base seo={p.seo} noindex>
+  <section class="section center-page">
+    <div class="container" style="max-width:760px">
+      <span class="stamp" style="margin-bottom:1.5rem">Request received</span>
+      <h1>{p.heroHeading}</h1>
+      <p style="font-size:var(--fs-lg);color:var(--ink-soft)">{p.heroText}</p>
+      <div class="btn-row"><a class="btn" href="/">{p.buttonLabel}</a><a class="btn btn--outline" href={telHref(s.phone)}><Icon name="phone" /> {s.callLabel} {s.phone}</a></div>
+    </div>
+  </section>
+</Base>

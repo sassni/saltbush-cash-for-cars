@@ -1,0 +1,8 @@
+---
+const {stats = []} = Astro.props
+---
+{stats.length > 0 && (
+<section class="stats" aria-label="Key facts"><div class="container"><ul>
+  {stats.map((st) => <li><b>{st.value}</b><span>{st.label}</span></li>)}
+</ul></div></section>
+)}

@@ -1,0 +1,14 @@
+---
+import SanityImage from './SanityImage.astro'
+const {services = []} = Astro.props
+---
+<ul class="grid grid-3" style="list-style:none;padding:0;margin:0">
+  {services.map((sv) => (
+    <li>
+      <a class="service-card" href={`/services/${sv.slug.current}`}>
+        <SanityImage image={sv.heroImage} aspect={16 / 10} widths={[400, 640, 800]} sizes="(min-width: 960px) 380px, (min-width: 640px) 50vw, 100vw" />
+        <div class="body"><h3>{sv.title}</h3><p>{sv.summary}</p><span class="more">Learn more →</span></div>
+      </a>
+    </li>
+  ))}
+</ul>

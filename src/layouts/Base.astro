@@ -1,0 +1,82 @@
+---
+import '@fontsource-variable/figtree/wght.css'
+import '@fontsource-variable/bricolage-grotesque/wght.css'
+import '../styles/global.css'
+import figtree from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url'
+import bricolage from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import {getSettings, getServices, urlFor} from '../lib/sanity.js'
+import {businessSchema} from '../lib/schema.js'
+
+const {seo = {}, schema = [], noindex = false, preloadImage} = Astro.props
+const s = await getSettings()
+const services = await getServices()
+const site = (Astro.site?.toString() || '').replace(/\/$/, '')
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '')
+const canonical = site + (path || '/')
+const title = seo.title || s.businessName
+const description = seo.description || s.footerBlurb
+const ogImage = s.socialImage?.asset ? urlFor(s.socialImage).width(1200).height(630).fit('crop').format('jpg').url() : undefined
+const ld = [businessSchema(s, site, ogImage), ...schema].filter(Boolean)
+---
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex, follow" />}
+  <meta name="theme-color" content="#1e3b2c" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" href={bricolage} as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href={figtree} as="font" type="font/woff2" crossorigin />
+  <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_AU" />
+  <meta property="og:site_name" content={s.businessName} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  {ogImage && <meta property="og:image" content={ogImage} />}
+  <meta name="twitter:card" content="summary_large_image" />
+  {ld.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Header settings={s} services={services} />
+  <main id="main"><slot /></main>
+  <Footer settings={s} services={services} />
+  <script>
+    // Progressive enhancement for quote forms: submit with fetch, show inline status.
+    document.querySelectorAll('form.quote-form').forEach((form) => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault()
+        const status = form.querySelector('.form-status')
+        const btn = form.querySelector('button[type=submit]')
+        const label = btn.textContent
+        btn.disabled = true; btn.textContent = 'Sending…'
+        status.className = 'form-status'
+        try {
+          const data = Object.fromEntries(new FormData(form))
+          delete data.redirect
+          const res = await fetch('https://api.web3forms.com/submit', {method: 'POST', headers: {'Content-Type': 'application/json', Accept: 'application/json'}, body: JSON.stringify(data)})
+          const json = await res.json()
+          if (!json.success) throw new Error(json.message)
+          status.textContent = form.dataset.success
+          status.className = 'form-status ok'
+          form.reset()
+        } catch (err) {
+          status.textContent = 'Sorry, something went wrong. Please call us instead.'
+          status.className = 'form-status err'
+        } finally { btn.disabled = false; btn.textContent = label }
+      })
+    })
+  </script>
+</body>
+</html>

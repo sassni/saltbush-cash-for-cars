@@ -1,0 +1,46 @@
+---
+import Logo from './Logo.astro'
+import {telHref} from '../lib/sanity.js'
+const {settings: s, services = []} = Astro.props
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <Logo name={s.businessName} />
+        <p>{s.footerBlurb}</p>
+        <a class="footer-phone" href={telHref(s.phone)}>{s.phone}</a>
+      </div>
+      <div>
+        <h2>Services</h2>
+        <ul>
+          <li><a href="/services">All services</a></li>
+          {services.map((sv) => <li><a href={`/services/${sv.slug.current}`}>{sv.title} Adelaide</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <ul><li><a href="/">Home</a></li><li><a href="/about">About us</a></li><li><a href="/contact">Contact &amp; quote</a></li></ul>
+      </div>
+      <div>
+        <h2>Contact</h2>
+        <address style="font-style:normal">
+          <ul>
+            <li><a href={telHref(s.phone)}>{s.phone}</a></li>
+            {s.email && <li><a href={`mailto:${s.email}`}>{s.email}</a></li>}
+            <li>{s.street}, {s.suburb} {s.state} {s.postcode}</li>
+            {(s.hours || []).map((h) => <li>{h}</li>)}
+          </ul>
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {new Date().getFullYear()} {s.businessName}{s.abn && ` · ABN ${s.abn}`}</span>
+      <span>Proudly serving Adelaide, South Australia</span>
+    </div>
+  </div>
+</footer>
+<div class="callbar" aria-label="Quick contact">
+  <a class="btn btn--outline" href={telHref(s.phone)}>{s.callLabel} now</a>
+  <a class="btn" href="#quote">{s.headerButton}</a>
+</div>

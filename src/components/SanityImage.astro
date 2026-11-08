@@ -1,0 +1,23 @@
+---
+import {urlFor, dims} from '../lib/sanity.js'
+// Responsive image from the Sanity CDN: WebP/AVIF, srcset, explicit width/height, lazy by default.
+const {image, sizes = '100vw', aspect, widths = [400, 640, 900, 1200, 1600], priority = false, quality = 68, class: cls} = Astro.props
+let src, srcset, w, h
+if (image?.asset) {
+  const d = dims(image)
+  const ratio = aspect || d.w / d.h
+  const make = (wd) => {
+    let b = urlFor(image).width(wd).quality(quality).fit('crop')
+    if (aspect) b = b.height(Math.round(wd / ratio))
+    return b.url()
+  }
+  srcset = widths.map((wd) => `${make(wd)} ${wd}w`).join(', ')
+  src = make(widths[Math.min(2, widths.length - 1)])
+  w = widths[Math.min(2, widths.length - 1)]
+  h = Math.round(w / ratio)
+}
+---
+{src && (
+  <img src={src} srcset={srcset} sizes={sizes} width={w} height={h} alt={image.alt || ''} class={cls}
+    loading={priority ? 'eager' : 'lazy'} decoding={priority ? 'sync' : 'async'} fetchpriority={priority ? 'high' : 'auto'} />
+)}

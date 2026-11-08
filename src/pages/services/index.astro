@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro'
+import Hero from '../../components/Hero.astro'
+import ServiceCards from '../../components/ServiceCards.astro'
+import Cards from '../../components/Cards.astro'
+import Areas from '../../components/Areas.astro'
+import Faq from '../../components/Faq.astro'
+import CtaBand from '../../components/CtaBand.astro'
+import {getPage, getSettings, getServices} from '../../lib/sanity.js'
+import {faqSchema, breadcrumbSchema} from '../../lib/schema.js'
+const p = await getPage('servicesPage')
+const s = await getSettings()
+const services = await getServices()
+const site = (Astro.site?.toString() || '').replace(/\/$/, '')
+const crumbs = [{name: 'Home', href: '/'}, {name: 'Services', href: '/services'}]
+---
+<Base seo={p.seo} schema={[faqSchema(p.faqs), breadcrumbSchema(crumbs, site)]}>
+  <Hero page={p} settings={s} crumbs={crumbs} />
+  <section class="section" aria-labelledby="list-h">
+    <div class="container">
+      <div class="section-head"><p class="eyebrow">Services</p><h2 id="list-h">{p.listHeading}</h2><p>{p.listIntro}</p></div>
+      <ServiceCards services={services} />
+    </div>
+  </section>
+  <section class="section section--alt" aria-labelledby="buy-h">
+    <div class="container">
+      <div class="section-head"><p class="eyebrow">What we buy</p><h2 id="buy-h">{p.buyHeading}</h2></div>
+      <Cards items={p.buyItems} cols={3} />
+    </div>
+  </section>
+  <Faq faqs={p.faqs} heading={p.faqHeading} />
+  <Areas settings={s} />
+  <CtaBand settings={s} />
+</Base>

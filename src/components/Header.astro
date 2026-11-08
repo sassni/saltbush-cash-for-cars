@@ -1,0 +1,43 @@
+---
+import Logo from './Logo.astro'
+import Icon from './Icon.astro'
+import {telHref} from '../lib/sanity.js'
+const {settings: s, services = []} = Astro.props
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/'
+const cur = (href) => (path === href ? 'page' : undefined)
+---
+<div class="topbar"><div class="container">
+  <span><span class="hide-sm">Free removal across Adelaide · </span>{s.hours?.[0]}</span>
+  <a href={telHref(s.phone)}>{s.callLabel} {s.phone}</a>
+</div></div>
+<header class="site-header">
+  <div class="container">
+    <Logo name={s.businessName} />
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="bars" aria-hidden="true"></span>Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="/" aria-current={cur('/')}>Home</a></li>
+        <li class="has-sub">
+          <a href="/services" aria-current={cur('/services')}>Services</a>
+          <ul class="sub">
+            {services.map((sv) => <li><a href={`/services/${sv.slug.current}`} aria-current={cur(`/services/${sv.slug.current}`)}>{sv.title}</a></li>)}
+          </ul>
+        </li>
+        <li><a href="/about" aria-current={cur('/about')}>About</a></li>
+        <li><a href="/contact" aria-current={cur('/contact')}>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn--outline" href={telHref(s.phone)}><Icon name="phone" /> {s.phone}</a>
+      <a class="btn" href="#quote">{s.headerButton}</a>
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.querySelector('.nav-toggle')
+  const nav = document.getElementById('site-nav')
+  const set = (open) => { btn.setAttribute('aria-expanded', String(open)); nav.classList.toggle('open', open) }
+  btn?.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'))
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('open')) { set(false); btn.focus() } })
+  nav?.addEventListener('click', (e) => { if (e.target.closest('a')) set(false) })
+</script>
