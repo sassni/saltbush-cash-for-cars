@@ -8,6 +8,7 @@ const dataset = import.meta.env.PUBLIC_SANITY_DATASET || 'production'
 export const client = createClient({projectId, dataset, apiVersion: '2024-10-01', useCdn: false, perspective: 'published'})
 const builder = createImageUrlBuilder({projectId, dataset})
 export const urlFor = (src) => builder.image(src).auto('format')
+export const plainUrlFor = (src) => builder.image(src) // fixed format, for social share images
 
 // Read original dimensions from the asset id: image-<hash>-1800x1200-webp
 export function dims(img) {

@@ -6,7 +6,7 @@ import inter from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff
 import grotesk from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
-import {getSettings, getServices, urlFor} from '../lib/sanity.js'
+import {getSettings, getServices, plainUrlFor} from '../lib/sanity.js'
 import {businessSchema} from '../lib/schema.js'
 
 const {seo = {}, schema = [], noindex = false, preloadImage} = Astro.props
@@ -17,7 +17,7 @@ const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').r
 const canonical = site + (path || '/')
 const title = seo.title || s.businessName
 const description = seo.description || s.footerBlurb
-const ogImage = s.socialImage?.asset ? urlFor(s.socialImage).width(1200).height(630).fit('crop').format('jpg').quality(88).url() : undefined
+const ogImage = s.socialImage?.asset ? plainUrlFor(s.socialImage).width(1200).height(630).fit('crop').format('jpg').quality(88).url() : undefined
 const ld = [businessSchema(s, site, ogImage), ...schema].filter(Boolean)
 ---
 <!doctype html>
