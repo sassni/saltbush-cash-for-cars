@@ -11,7 +11,7 @@ const items = s.testimonials || []
         <figure class="review">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
           <blockquote><p>“{t.quote}”</p></blockquote>
-          <figcaption>{t.name}, {t.suburb}{t.car && <span>Sold: {t.car}</span>}</figcaption>
+          <figcaption><span class="avatar" aria-hidden="true">{t.name?.[0]}</span><div>{t.name}, {t.suburb}{t.car && <span>Sold: {t.car}</span>}</div></figcaption>
         </figure>
       ))}
     </div>

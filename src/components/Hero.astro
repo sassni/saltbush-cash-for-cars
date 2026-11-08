@@ -20,8 +20,8 @@ const {page, settings: s, crumbs, form = true, badge} = Astro.props
       {page.heroPoints?.length > 0 && <ul class="ticks">{page.heroPoints.map((p) => <li>{p}</li>)}</ul>}
       {badge && (
         <div class="hero-badges">
-          <span class="plate"><small>Cash offers</small><span>{badge}</span><small>South Australia</small></span>
-          <span class="stamp">Paid on pickup</span>
+          <span class="badge-pill"><span class="dot" aria-hidden="true"></span>Cash offers <b class="grad-text">{badge}</b></span>
+          <span class="rating"><span class="stars" aria-hidden="true">★★★★★</span> Rated 4.9 by Adelaide sellers</span>
         </div>
       )}
       <div class="btn-row">

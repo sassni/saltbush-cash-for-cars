@@ -3,12 +3,12 @@ import Icon from './Icon.astro'
 import {telHref} from '../lib/sanity.js'
 const {settings: s} = Astro.props
 ---
-<section class="cta-band pattern-bg on-dark" aria-labelledby="cta-h">
-  <div class="container">
+<section class="cta-band" aria-labelledby="cta-h">
+  <div class="container"><div class="cta-panel">
     <div><h2 id="cta-h">{s.ctaHeading}</h2><p>{s.ctaText}</p></div>
     <div class="btn-row">
       <a class="btn" href="#quote">{s.quoteLabel}</a>
       <a class="btn btn--outline" href={telHref(s.phone)}><Icon name="phone" /> {s.callLabel} {s.phone}</a>
     </div>
-  </div>
+  </div></div>
 </section>

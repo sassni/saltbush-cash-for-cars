@@ -6,7 +6,7 @@ const {services = []} = Astro.props
   {services.map((sv) => (
     <li>
       <a class="service-card" href={`/services/${sv.slug.current}`}>
-        <SanityImage image={sv.heroImage} aspect={16 / 10} widths={[400, 640, 800]} sizes="(min-width: 960px) 380px, (min-width: 640px) 50vw, 100vw" />
+        <div class="img-wrap"><SanityImage image={sv.heroImage} aspect={16 / 10} widths={[400, 640, 800]} sizes="(min-width: 960px) 380px, (min-width: 640px) 50vw, 100vw" /></div>
         <div class="body"><h3>{sv.title}</h3><p>{sv.summary}</p><span class="more">Learn more →</span></div>
       </a>
     </li>

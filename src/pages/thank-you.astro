@@ -6,9 +6,9 @@ const p = await getPage('thankYouPage')
 const s = await getSettings()
 ---
 <Base seo={p.seo} noindex>
-  <section class="section center-page">
+  <section class="section center-page pattern-bg" style="min-height:60vh">
     <div class="container" style="max-width:760px">
-      <span class="stamp" style="margin-bottom:1.5rem">Request received</span>
+      <p class="eyebrow">Request received</p>
       <h1>{p.heroHeading}</h1>
       <p style="font-size:var(--fs-lg);color:var(--ink-soft)">{p.heroText}</p>
       <div class="btn-row"><a class="btn" href="/">{p.buttonLabel}</a><a class="btn btn--outline" href={telHref(s.phone)}><Icon name="phone" /> {s.callLabel} {s.phone}</a></div>

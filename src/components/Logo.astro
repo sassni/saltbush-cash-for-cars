@@ -5,10 +5,10 @@ const first = parts.shift()
 ---
 <a href="/" class="logo">
   <svg viewBox="0 0 48 48" aria-hidden="true">
-    <rect x="1.5" y="1.5" width="45" height="45" rx="11" fill="#1e3b2c" stroke="#15201a" stroke-width="3"/>
-    <path d="M24 38V22" stroke="#f2b134" stroke-width="3" stroke-linecap="round"/>
-    <path d="M24 26c-6 0-10-4-10-10 6 0 10 4 10 10zM24 22c5 0 8-3.5 8-8.5-5 0-8 3.5-8 8.5zM24 32c-4.5 0-7.5-3-7.5-7 4.5 0 7.5 3 7.5 7zM24 30c4.5 0 7.5-3 7.5-7-4.5 0-7.5 3-7.5 7z" fill="#8fa898"/>
-    <path d="M12 38h24" stroke="#f2b134" stroke-width="3" stroke-linecap="round"/>
+    <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b6f23a"/><stop offset="1" stop-color="#2ee6c5"/></linearGradient></defs>
+    <rect width="48" height="48" rx="14" fill="url(#lg)"/>
+    <path d="M24 37V21" stroke="#07110a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M24 25c-6 0-10-4-10-10 6 0 10 4 10 10zM24 21c5 0 8-3.5 8-8.5-5 0-8 3.5-8 8.5zM24 31c-4.5 0-7.5-3-7.5-7 4.5 0 7.5 3 7.5 7zM24 29c4.5 0 7.5-3 7.5-7-4.5 0-7.5 3-7.5 7z" fill="#07110a"/>
   </svg>
   <span><b>{first}</b><small>{parts.join(' ')}</small></span>
 </a>

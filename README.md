@@ -17,7 +17,7 @@ A website for an Adelaide business that buys unwanted cars and tows them away fo
   - Every field has help text, and images have drag-and-drop upload, a focal-point crop and a **required alt-text field**.
 - **Safe.** The client can only edit what exists. Creating, deleting and duplicating documents is switched off, and page addresses are locked. New services or locations go through the developer, as the brief asks.
 - **One place for contact details.** Change the phone number once in *Site settings* and it updates the header, buttons, mobile call bar, footer, contact page and Google structured data.
-- **Fast.** Astro outputs plain HTML with almost no JavaScript, and Sanity serves images resized and in WebP/AVIF. Lighthouse (mobile, local): **Performance 98, Accessibility 100, Best Practices 100, SEO 100.**
+- **Fast.** Astro outputs plain HTML with almost no JavaScript, and Sanity serves images resized and in WebP/AVIF. Lighthouse (mobile): **Performance 96–99, Accessibility 100, Best Practices 100, SEO 100.**
 - **Low maintenance.** Unlike WordPress, there are no plugins, PHP or security updates to manage.
 - **Content pipeline.** Publishing in Sanity triggers a webhook to a Vercel Deploy Hook, and the live site rebuilds in about 1 minute.
 
@@ -41,33 +41,32 @@ A website for an Adelaide business that buys unwanted cars and tows them away fo
 
 ## Design decisions
 
-- **Concept: "local, honest, quick".** The look is earthy South Australian landscape colours combined with motor-trade details. It's deliberately different from the red, blue and yellow used across the reference sites.
+- **Concept: "dark premium, neon accents".** A near-black canvas with glass-effect surfaces and a lime-to-teal glow, so a cash-for-cars business looks as polished as a modern tech brand. It's deliberately unlike the bright red, blue and yellow trade sites in this industry, and the bright lime calls to action stand out strongly against the dark background.
 - **Palette:**
 
   | Colour | Hex | Use |
   |---|---|---|
-  | Eucalypt | `#1E3B2C` | primary dark |
-  | Sun-ochre | `#F2B134` | calls to action |
-  | Sand | `#F6F1E6` | background |
-  | Ink | `#15201A` | text |
-  | Sage | `#8FA898` | muted |
-  | Rust | `#A8461F` | accent |
+  | Background | `#0A0D0C` | page canvas |
+  | Surface | `#121816` | cards |
+  | Text | `#F2F5F3` | body text (17:1 contrast) |
+  | Muted | `#A3ADA8` | secondary text (8:1) |
+  | **Lime** | `#B6F23A` | calls to action |
+  | Teal | `#2EE6C5` | gradient accent |
 
   All text pairs meet WCAG AA contrast.
-- **Type:** *Bricolage Grotesque* (bold display, with character) + *Figtree* (friendly, very readable body). Both are self-hosted, preloaded, Latin subset only.
-- **Signature details:**
-  - "Up to $15,000" shown as an **SA number plate**
-  - A rotated **"Paid on pickup" stamp**
-  - The quote form styled as a **ticket or receipt** with punched edges
-  - Suburbs shown as plate-style chips
-  - A subtle **saltbush-leaf pattern** in the dark sections
-- **Buttons:** chunky, with a 2px ink border and a hard offset shadow. They're tactile and obviously clickable, and at least 48px tall for thumbs.
-- **Spacing:** 4px-based spacing scale and fluid type sizes.
+- **Type:** *Space Grotesk* (geometric, technical display headings) + *Inter* (highly legible body). Both are self-hosted variable fonts, preloaded, Latin subset only.
+- **Components:**
+  - **Pill buttons:** lime with a soft glow for primary actions, glass outline for secondary. All at least 48px tall for thumbs.
+  - **Cards:** 20px radius, glass-effect, with a lime border on hover.
+  - **Quote form:** a glass card with a gradient border.
+  - **Labels and numbers:** pill "eyebrow" labels, gradient stat numbers.
+  - **Backgrounds:** a subtle grid-and-glow pattern in feature sections.
+- **Spacing:** 4px-based spacing scale and fluid `clamp()` type sizes.
 - **Conversion layout (taken from the reference sites):**
   - Every key page has an H1, a quote button and a call button above the fold.
   - The quote form sits in the hero: a right-hand column on desktop, directly underneath on mobile.
-  - A sticky header phone button on desktop, and a **sticky Call / Free Quote bar** on mobile.
-- **Images:** free-to-use Unsplash photos, compressed to WebP and served responsively from the Sanity CDN. The client can replace them with photos of their own trucks.
+  - A sticky glass header with a phone button on desktop, and a **floating Call / Free Quote bar** on mobile.
+- **Images:** free-to-use Unsplash photos, dimmed and desaturated in the hero so the text stays readable. They're served responsively (WebP/AVIF) from the Sanity CDN, and the client can replace them in the CMS.
 
 ## SEO keyword plan
 

@@ -24,15 +24,15 @@ const address = `${s.street}, ${s.suburb} ${s.state} ${s.postcode}`
         <div class="btn-row" style="margin-bottom:var(--space-6)">
           <a class="btn" href={telHref(s.phone)}><Icon name="phone" /> {s.callLabel} {s.phone}</a>
         </div>
-        <div class="card" style="background:var(--eucalypt-2);border-color:var(--sage);color:var(--sand)">
-          <h2 style="font-size:1.35rem;color:#fff">{p.detailsHeading}</h2>
-          <ul class="contact-list" style="margin-bottom:var(--space-5)">
-            <li><span class="ico"><Icon name="phone" /></span><div><b style="color:#c9d6ce">Phone</b><a href={telHref(s.phone)} style="color:#fff">{s.phone}</a></div></li>
-            {s.email && <li><span class="ico"><Icon name="mail" /></span><div><b style="color:#c9d6ce">Email</b><a href={`mailto:${s.email}`} style="color:#fff;word-break:break-all">{s.email}</a></div></li>}
-            <li><span class="ico"><Icon name="pin" /></span><div><b style="color:#c9d6ce">Yard (by appointment)</b><span>{address}</span></div></li>
+        <div class="contact-card">
+          <h2>{p.detailsHeading}</h2>
+          <ul class="contact-list">
+            <li><span class="ico"><Icon name="phone" /></span><div><b>Phone</b><a href={telHref(s.phone)}>{s.phone}</a></div></li>
+            {s.email && <li><span class="ico"><Icon name="mail" /></span><div><b>Email</b><a href={`mailto:${s.email}`}>{s.email}</a></div></li>}
+            <li><span class="ico"><Icon name="pin" /></span><div><b>Yard (by appointment)</b><span>{address}</span></div></li>
           </ul>
-          <h2 style="font-size:1.35rem;color:#fff">{p.hoursHeading}</h2>
-          <ul class="hours">{(s.hours || []).map((h) => <li style="border-color:#4a6355">{h}</li>)}</ul>
+          <h2>{p.hoursHeading}</h2>
+          <ul class="hours">{(s.hours || []).map((h) => <li>{h}</li>)}</ul>
         </div>
       </div>
       <QuoteForm settings={s} />
